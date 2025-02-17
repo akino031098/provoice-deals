@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProVoice Deals</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <h1>ProVoice Deals</h1>
+    <nav>
+      <button id="homeTab">ホーム</button>
+      <button id="myPageTab">マイページ</button>
+      <button id="aboutTab">サービス説明</button>
+    </nav>
+  </header>
+
+<!-- ホーム画面：カテゴリ一覧（左側に縦並び） -->
+<div id="categoryList">
+  <h3>カテゴリ</h3>
+  <div class="category-item" data-category="all">すべて</div>
+  <div class="category-item" data-category="インテリア">インテリア</div>
+  <div class="category-item" data-category="趣味">趣味</div>
+  <div class="category-item" data-category="動物">動物</div>
+  <div class="category-item" data-category="旅行">旅行</div>
+  <div class="category-item" data-category="教育">教育</div>
+  <div class="category-item" data-category="美容">美容</div>
+  <div class="category-item" data-category="交通">交通</div>
+  <div class="category-item" data-category="ファッション">ファッション</div>
+</div>
+
+<!-- ホーム画面のメインコンテンツ -->
+<main id="homeScreen">
+  <section id="questionInput">
+    <h2>質問を投稿</h2>
+    <select id="questionCategory">
+      <option value="all">カテゴリを選択</option>
+      <option value="インテリア">インテリア</option>
+      <option value="趣味">趣味</option>
+      <option value="動物">動物</option>
+      <option value="旅行">旅行</option>
+      <option value="教育">教育</option>
+      <option value="美容">美容</option>
+      <option value="交通">交通</option>
+      <option value="ファッション">ファッション</option>
+    </select>
+    <input type="text" id="questionContent" placeholder="質問内容を入力してください">
+    <button id="submitQuestion">投稿</button>
+  </section>
+
+  <!-- 質問一覧 -->
+  <section id="questionListSection">
+    <h2>質問一覧</h2>
+    <div id="questionList"></div>
+  </section>
+</main>
+
+
+  <main id="myPage" style="display: none;">
+    <section id="authSection">
+      <h2>ログイン</h2>
+      <button id="googleLogin">Googleでログイン</button>
+      <button id="logout" style="display: none;">ログアウト</button>
+      <p id="userInfo"></p>
+      <div id="profile" style="display: none; text-align: center;">
+        <img id="userIcon" src="" alt="User Icon" width="50" height="50" style="border-radius: 50%; display: none;">
+        <p id="userName"></p>
+      </div>
+    </section>
+    
+    <section id="aboutMe">
+      <h2>自己紹介</h2>
+      <textarea id="aboutMeContent" placeholder="自己紹介を入力してください"></textarea>
+      <button id="saveAboutMe">保存</button>
+    </section>
+    
+    <section id="chipSection">
+      <h2>チップ履歴</h2>
+      <div id="tabs">
+        <button id="sentTab">送ったチップ</button>
+        <button id="receivedTab">受け取ったチップ</button>
+        <button id="rankingTab">ランキング</button>
+      </div>
+      <div id="history">
+        <div id="sentTips">
+          <h3>送ったチップ</h3>
+          <ul id="sentTipsList"></ul>
+        </div>
+        <div id="receivedTips" style="display: none;">
+          <h3>受け取ったチップ</h3>
+          <ul id="receivedTipsList"></ul>
+        </div>
+        <div id="ranking" style="display: none;">
+          <h3>ランキング</h3>
+          <button id="weeklyRanking">今週</button>
+          <button id="monthlyRanking">今月</button>
+          <ol id="topUsersList"></ol>
+        </div>
+      </div>
+    </section>
+    
+    <section id="myPosts">
+      <h2>自分の質問</h2>
+      <ul id="userPostsList"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="script.js"></script>
+  <script>
+    document.getElementById("homeTab").addEventListener("click", () => {
+      document.getElementById("homeScreen").style.display = "block";
+      document.getElementById("myPage").style.display = "none";
+    });
+
+    document.getElementById("myPageTab").addEventListener("click", () => {
+      document.getElementById("homeScreen").style.display = "none";
+      document.getElementById("myPage").style.display = "block";
+    });
+
+    document.getElementById("aboutTab").addEventListener("click", () => {
+      window.location.href = "about.html";
+    });
+  </script>
+</body>
+
+</html>
